@@ -63,9 +63,9 @@ Render hosts your NestJS API.
 1.  **New Web Service**: Click **New +** > **Web Service** on [render.com](https://render.com).
 2.  **Connect Repo**: Select your `urbansaathi` GitHub repo.
 3.  **Build Settings**:
-    - **Root Directory**: `backend` (Crucial: leave empty if your repo is solely the backend).
-    - **Build Command**: `npm install && npm run build`
-    - **Start Command**: `npm run start:prod`
+    - **Root Directory**: **Leave this EMPTY** (Delete anything in this box).
+    - **Build Command**: `cd backend && npm install && npm run build`
+    - **Start Command**: `cd backend && npm run start:prod`
 4.  **Environment Variables** (Advanced > Add Environment Variable):
     - `PORT`: `4000`
     - `DATABASE_URL`: *[Your Supabase URI]*
