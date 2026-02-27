@@ -17,7 +17,9 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   database: process.env.DATABASE_URL
     ? new URL(process.env.DATABASE_URL).pathname.substring(1)
     : process.env.DB_NAME || 'urbansaathi',
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  ssl: process.env.NODE_ENV === 'production' || process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  synchronize: process.env.NODE_ENV !== 'production',
+  synchronize: true,
+  logging: process.env.NODE_ENV !== 'production',
+  autoLoadEntities: true,
 };
