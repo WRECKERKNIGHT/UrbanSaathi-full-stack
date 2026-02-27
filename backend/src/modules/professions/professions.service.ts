@@ -29,7 +29,7 @@ export class ProfessionsService implements OnModuleInit {
         return this.professionRepository.save(profession);
     }
 
-    async findOne(id: string) {
+    async findOne(id: number) {
         return this.professionRepository.findOne({ where: { id } });
     }
 }
