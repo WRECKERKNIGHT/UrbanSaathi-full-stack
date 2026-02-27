@@ -9,6 +9,12 @@ export class Profession {
   @Column({ unique: true })
   name: string;
 
+  @Column({ nullable: true })
+  description: string;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
+  baseServiceCharge: number;
+
   @Column({ type: 'jsonb', nullable: true })
   metadataSchema: any; // Defines custom fields/proofs required
 
