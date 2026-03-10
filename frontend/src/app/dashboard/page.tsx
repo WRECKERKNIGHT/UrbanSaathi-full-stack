@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/store/auth';
 import { useSocket } from '@/lib/socket';
