@@ -29,69 +29,72 @@ export default function CyberSidebar() {
                 {isOpen && (
                     <>
                         {/* Backdrop with RGB Split */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setIsOpen(false)}
-                            className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm"
-                        />
+                        <div className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                            />
+                        </div>
 
                         {/* Sidebar - Switchblade Unfold */}
-                        <motion.div
-                            initial={{ x: '-100%', skewX: -10 }}
-                            animate={{ x: 0, skewX: 0 }}
-                            exit={{ x: '-100%', skewX: 10 }}
-                            transition={{ type: 'spring', damping: 20, stiffness: 100 }}
-                            className="fixed top-0 left-0 h-full w-80 z-[70] bg-zinc-950 border-r border-primary/30 p-8 flex flex-col shadow-[20px_0_50px_-20px_rgba(255,0,60,0.3)]"
-                        >
-                            <div className="flex justify-between items-center mb-12">
-                                <span className="text-2xl font-black tracking-tighter text-primary italic">CYBER-SETU</span>
-                                <button onClick={() => setIsOpen(false)} className="text-slate-500 hover:text-white">
-                                    <X className="h-6 w-6" />
-                                </button>
-                            </div>
+                        <div className="fixed top-0 left-0 h-full w-80 z-[70] bg-zinc-950 border-r border-primary/30 p-8 flex flex-col shadow-[20px_0_50px_-20px_rgba(255,0,60,0.3)]">
+                            <motion.div
+                                initial={{ x: '-100%', skewX: -10 }}
+                                animate={{ x: 0, skewX: 0 }}
+                                exit={{ x: '-100%', skewX: 10 }}
+                                transition={{ type: 'spring', damping: 20, stiffness: 100 }}
+                            >
+                                <div className="flex justify-between items-center mb-12">
+                                    <span className="text-2xl font-black tracking-tighter text-primary italic">CYBER-SETU</span>
+                                    <button onClick={() => setIsOpen(false)} className="text-slate-500 hover:text-white">
+                                        <X className="h-6 w-6" />
+                                    </button>
+                                </div>
 
-                            <nav className="flex-1 space-y-4">
-                                {NAV_ITEMS.map((item, i) => (
-                                    <motion.div
-                                        key={item.label}
-                                        initial={{ x: -20, opacity: 0 }}
-                                        animate={{ x: 0, opacity: 1 }}
-                                        transition={{ delay: i * 0.1 }}
-                                        className="group relative"
-                                    >
-                                        <a href={item.path} className="flex items-center gap-4 p-4 text-slate-400 group-hover:text-primary transition-all">
-                                            <div className="relative">
-                                                <item.icon className="h-6 w-6 z-10 relative" />
-                                                <motion.div
-                                                    className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-150 transition-transform"
-                                                    animate={{ opacity: [0, 1, 0] }}
-                                                    transition={{ repeat: Infinity, duration: 1.5 }}
-                                                />
-                                            </div>
-                                            <span className="font-bold tracking-widest uppercase text-sm group-hover:translate-x-2 transition-transform">
-                                                {item.label}
-                                            </span>
-                                        </a>
-                                        {/* Levitation Orb */}
-                                        <motion.div
-                                            className="absolute -right-4 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full hidden group-hover:block"
-                                            animate={{ y: [0, -10, 0] }}
-                                            transition={{ repeat: Infinity, duration: 2 }}
-                                        />
-                                    </motion.div>
-                                ))}
-                            </nav>
+                                <nav className="flex-1 space-y-4">
+                                    {NAV_ITEMS.map((item, i) => (
+                                        <div className="group relative">
+                                            <motion.div
+                                                initial={{ x: -20, opacity: 0 }}
+                                                animate={{ x: 0, opacity: 1 }}
+                                                transition={{ delay: i * 0.1 }}
+                                            >
+                                                <a href={item.path} className="flex items-center gap-4 p-4 text-slate-400 group-hover:text-primary transition-all">
+                                                    <div className="relative">
+                                                        <item.icon className="h-6 w-6 z-10 relative" />
+                                                        <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-150 transition-transform">
+                                                            <motion.div
+                                                                animate={{ opacity: [0, 1, 0] }}
+                                                                transition={{ repeat: Infinity, duration: 1.5 }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <span className="font-bold tracking-widest uppercase text-sm group-hover:translate-x-2 transition-transform">
+                                                        {item.label}
+                                                    </span>
+                                                </a>
+                                                {/* Levitation Orb */}
+                                                <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full hidden group-hover:block">
+                                                    <motion.div
+                                                        animate={{ y: [0, -10, 0] }}
+                                                        transition={{ repeat: Infinity, duration: 2 }}
+                                                    />
+                                                </div>
+                                            </motion.div>
+                                        </div>
+                                    ))}
+                                </nav>
 
-                            <div className="pt-8 border-t border-slate-800 flex justify-between items-center">
-                                <ModeToggle />
-                                <div className="text-[10px] text-slate-600 font-mono">SYS_VER: 2.0.4-BETA</div>
-                            </div>
-                        </motion.div>
+                                <div className="pt-8 border-t border-slate-800 flex justify-between items-center">
+                                    <ModeToggle />
+                                    <div className="text-[10px] text-slate-600 font-mono">SYS_VER: 2.0.4-BETA</div>
+                                </div>
+                            </motion.div>
+                        </div>
                     </>
                 )}
-            </AnimatePresence>
+            </AnimatePresence >
         </>
     )
 }

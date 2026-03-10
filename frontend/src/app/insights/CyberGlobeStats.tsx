@@ -89,11 +89,12 @@ export default function CyberGlobeStats() {
             <div className="absolute bottom-6 right-6 z-10 text-right space-y-2">
                 <div className="text-xs font-bold text-white tracking-widest uppercase">Network_Load: OPTIMAL</div>
                 <div className="h-1 w-32 bg-slate-800 rounded-full overflow-hidden">
-                    <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: '65%' }}
-                        className="h-full bg-acid-green shadow-[0_0_10px_#ADFF00]"
-                    />
+                    <div className="h-full bg-acid-green shadow-[0_0_10px_#ADFF00]">
+                        <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: '65%' }}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

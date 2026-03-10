@@ -41,13 +41,14 @@ function CheckoutContent() {
     if (isSuccess) {
         return (
             <div className="flex flex-col items-center justify-center space-y-6 text-center py-20">
-                <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="h-20 w-20 bg-green-500 rounded-full flex items-center justify-center"
-                >
-                    <CheckCircle className="h-10 w-10 text-white" />
-                </motion.div>
+                <div className="h-20 w-20 bg-green-500 rounded-full flex items-center justify-center">
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                    >
+                        <CheckCircle className="h-10 w-10 text-white" />
+                    </motion.div>
+                </div>
                 <div className="space-y-2">
                     <h2 className="text-3xl font-bold">Payment Successful!</h2>
                     <p className="text-slate-400">Your funds are now in escrow. Redirecting to dashboard...</p>

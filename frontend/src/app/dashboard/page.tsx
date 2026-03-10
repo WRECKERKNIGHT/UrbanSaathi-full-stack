@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/store/auth';
 import { useSocket } from '@/lib/socket';
@@ -82,31 +83,34 @@ export default function DashboardPage() {
                                     </div>
                                 ) : (
                                     notifications.map((notif) => (
-                                        <motion.div
+                                        <div
                                             key={notif.id}
-                                            initial={{ x: -20, opacity: 0 }}
-                                            animate={{ x: 0, opacity: 1 }}
                                             className="p-6 bg-zinc-950 border-l-4 border-acid-green relative overflow-hidden group"
                                         >
-                                            <div className="absolute top-0 right-0 p-2 bg-acid-green/10 text-acid-green font-mono text-[8px] uppercase">
-                                                {notif.type}
-                                            </div>
-                                            <div className="space-y-2">
-                                                <h4 className="text-xl font-black tracking-tighter uppercase italic">{notif.type === 'offer' ? notif.profession : 'Direct_Contract'}</h4>
-                                                <p className="text-[10px] text-slate-500 font-mono italic">REQ_ID: 0x{notif.id.toString().slice(-6)}</p>
+                                            <motion.div
+                                                initial={{ x: -20, opacity: 0 }}
+                                                animate={{ x: 0, opacity: 1 }}
+                                            >
+                                                <div className="absolute top-0 right-0 p-2 bg-acid-green/10 text-acid-green font-mono text-[8px] uppercase">
+                                                    {notif.type}
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <h4 className="text-xl font-black tracking-tighter uppercase italic">{notif.type === 'offer' ? notif.profession : 'Direct_Contract'}</h4>
+                                                    <p className="text-[10px] text-slate-500 font-mono italic">REQ_ID: 0x{notif.id.toString().slice(-6)}</p>
 
-                                                {notif.type === 'offer' ? (
-                                                    <div className="flex gap-4 pt-4">
-                                                        <button className="flex-1 bg-acid-green text-black font-black text-[10px] py-2 uppercase tracking-widest hover:brightness-110 transition-all">Accept_Incursion</button>
-                                                        <button className="flex-1 border border-white/10 text-slate-500 font-black text-[10px] py-2 uppercase tracking-widest hover:text-white transition-all">Dismiss</button>
-                                                    </div>
-                                                ) : (
-                                                    <div className="p-3 bg-acid-green/5 border border-acid-green/20 text-acid-green text-[10px] font-mono uppercase italic">
-                                                        Agent {notif.providerName} has established a link. Extraction starting.
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </motion.div>
+                                                    {notif.type === 'offer' ? (
+                                                        <div className="flex gap-4 pt-4">
+                                                            <button className="flex-1 bg-acid-green text-black font-black text-[10px] py-2 uppercase tracking-widest hover:brightness-110 transition-all">Accept_Incursion</button>
+                                                            <button className="flex-1 border border-white/10 text-slate-500 font-black text-[10px] py-2 uppercase tracking-widest hover:text-white transition-all">Dismiss</button>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="p-3 bg-acid-green/5 border border-acid-green/20 text-acid-green text-[10px] font-mono uppercase italic">
+                                                            Agent {notif.providerName} has established a link. Extraction starting.
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </motion.div>
+                                        </div>
                                     ))
                                 )}
                             </div>
@@ -136,11 +140,12 @@ export default function DashboardPage() {
                                         <span className="text-primary">85%</span>
                                     </div>
                                     <div className="h-1 bg-white/5 overflow-hidden">
-                                        <motion.div
-                                            initial={{ width: 0 }}
-                                            animate={{ width: '85%' }}
-                                            className="h-full bg-primary shadow-[0_0_10px_#FF003C]"
-                                        />
+                                        <div className="h-full bg-primary shadow-[0_0_10px_#FF003C]">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                animate={{ width: '85%' }}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
 

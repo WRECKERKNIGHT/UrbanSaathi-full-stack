@@ -81,13 +81,12 @@ export default function InsightsPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
                     {cards.map((card, index) => (
-                        <motion.div
-                            key={card.title}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="bg-zinc-950 border border-primary/10 p-6 relative overflow-hidden group hover:border-primary/50 transition-colors"
-                        >
+                        <div key={card.title} className="bg-zinc-950 border border-primary/10 p-6 relative overflow-hidden group hover:border-primary/50 transition-colors">
+                            <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                            />
                             <div className="absolute top-0 left-0 w-1 h-full bg-primary/20 group-hover:bg-primary transition-colors" />
                             <div className="flex justify-between items-start mb-4">
                                 <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">{card.title}</span>
@@ -97,7 +96,7 @@ export default function InsightsPage() {
                             <div className="text-[9px] text-slate-600 font-mono mt-2 lowercase italic">
                                 {card.description}
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 
@@ -125,11 +124,12 @@ export default function InsightsPage() {
                                         <span className="text-slate-400">{prof.count} jobs</span>
                                     </div>
                                     <div className="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
-                                        <motion.div
-                                            initial={{ width: 0 }}
-                                            animate={{ width: `${(prof.count / 142) * 100}%` }}
-                                            className={`h-full ${prof.color}`}
-                                        />
+                                        <div className={`h-full ${prof.color}`}>
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                animate={{ width: `${(prof.count / 142) * 100}%` }}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             ))}

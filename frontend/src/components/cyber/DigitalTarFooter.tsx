@@ -11,20 +11,23 @@ export default function DigitalTarFooter() {
 
             <div className="absolute top-0 left-0 w-full flex justify-around pointer-events-none">
                 {[...Array(6)].map((_, i) => (
-                    <motion.div
+                    <div
                         key={i}
                         className="w-20 h-20 bg-black rounded-full blur-xl"
-                        animate={{
-                            y: [0, -40, 0],
-                            scale: [1, 1.5, 1],
-                            opacity: [0.3, 0.6, 0.3]
-                        }}
-                        transition={{
-                            duration: 3 + i,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                    />
+                    >
+                        <motion.div
+                            animate={{
+                                y: [0, -40, 0],
+                                scale: [1, 1.5, 1],
+                                opacity: [0.3, 0.6, 0.3]
+                            }}
+                            transition={{
+                                duration: 3 + i,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                        />
+                    </div>
                 ))}
             </div>
 

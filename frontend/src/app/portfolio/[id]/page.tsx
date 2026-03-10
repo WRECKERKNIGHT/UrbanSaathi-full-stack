@@ -37,20 +37,21 @@ export default function PortfolioPage() {
 
             <main className="max-w-5xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
                 <header className="flex flex-col md:flex-row gap-12 items-center md:items-start mb-20 border-b border-primary/20 pb-12">
-                    <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        className="relative w-48 h-48 group"
-                    >
-                        <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-all" />
-                        <div className="relative z-10 w-full h-full border-2 border-primary/50 flex items-center justify-center bg-zinc-950 overflow-hidden">
-                            <Shield className="h-24 w-24 text-primary opacity-50" />
-                        </div>
-                        {/* Trust Score overlay */}
-                        <div className="absolute -bottom-4 -right-4 bg-primary text-black font-black p-3 px-5 skew-x-[-15deg] shadow-[5px_5px_0_#000]">
-                            {profile?.trustScore || '4.8'}
-                        </div>
-                    </motion.div>
+                    <div className="relative w-48 h-48 group">
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                        >
+                            <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-all" />
+                            <div className="relative z-10 w-full h-full border-2 border-primary/50 flex items-center justify-center bg-zinc-950 overflow-hidden">
+                                <Shield className="h-24 w-24 text-primary opacity-50" />
+                            </div>
+                            {/* Trust Score overlay */}
+                            <div className="absolute -bottom-4 -right-4 bg-primary text-black font-black p-3 px-5 skew-x-[-15deg] shadow-[5px_5px_0_#000]">
+                                {profile?.trustScore || '4.8'}
+                            </div>
+                        </motion.div>
+                    </div>
 
                     <div className="flex-1 space-y-4 text-center md:text-left">
                         <h1 className="text-5xl font-black italic tracking-tighter uppercase italic">
@@ -106,25 +107,27 @@ export default function PortfolioPage() {
 
                         <div className="space-y-4">
                             {[1, 2, 3].map((_, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ x: 20, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="p-6 bg-zinc-950 border-l-4 border-primary group hover:bg-zinc-900 transition-all flex justify-between items-center"
-                                >
-                                    <div className="space-y-1">
-                                        <div className="text-[10px] text-primary/70 font-mono">JOB_ID: 0xRE_00{i}</div>
-                                        <div className="text-lg font-black tracking-tighter uppercase italic">LEAK_ANOMALY_FIXED</div>
-                                        <div className="text-[9px] text-slate-600">CLIENT: 0xUSER_0A // DATE: 2026.FEB.12</div>
-                                    </div>
-                                    <div className="flex flex-col items-end gap-2">
-                                        <div className="flex gap-1">
-                                            {[...Array(5)].map((_, j) => <Star key={j} className="h-3 w-3 text-primary fill-primary" />)}
+                                <div key={i} className="p-6 bg-zinc-950 border-l-4 border-primary group hover:bg-zinc-900 transition-all flex justify-between items-center">
+                                    <motion.div
+                                        initial={{ x: 20, opacity: 0 }}
+                                        animate={{ x: 0, opacity: 1 }}
+                                        transition={{ delay: i * 0.1 }}
+                                    >
+                                        <div className="w-full flex justify-between items-center">
+                                            <div className="space-y-1">
+                                                <div className="text-[10px] text-primary/70 font-mono">JOB_ID: 0xRE_00{i}</div>
+                                                <div className="text-lg font-black tracking-tighter uppercase italic">LEAK_ANOMALY_FIXED</div>
+                                                <div className="text-[9px] text-slate-600">CLIENT: 0xUSER_0A // DATE: 2026.FEB.12</div>
+                                            </div>
+                                            <div className="flex flex-col items-end gap-2">
+                                                <div className="flex gap-1">
+                                                    {[...Array(5)].map((_, j) => <Star key={j} className="h-3 w-3 text-primary fill-primary" />)}
+                                                </div>
+                                                <span className="text-[8px] bg-primary/20 p-1 text-primary font-bold">SUCCESSFUL_EXTRACTION</span>
+                                            </div>
                                         </div>
-                                        <span className="text-[8px] bg-primary/20 p-1 text-primary font-bold">SUCCESSFUL_EXTRACTION</span>
-                                    </div>
-                                </motion.div>
+                                    </motion.div>
+                                </div>
                             ))}
                         </div>
                     </section>
