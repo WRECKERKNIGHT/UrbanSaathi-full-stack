@@ -79,19 +79,59 @@ UrbanSaathi-full-stack/
 
 ### Local Development
 
-1. **Start the backend**
-   ```bash
-   cd backend
-   npm run start:dev
-   # Backend runs on http://localhost:3000/api
-   ```
+#### Option 1: Using Separate Terminal Windows (Recommended)
 
-2. **Start the frontend**
-   ```bash
-   cd frontend
-   npm run dev
-   # Frontend runs on http://localhost:3001
-   ```
+**Terminal 1 - Backend Server**
+```bash
+cd backend
+npm run start:dev
+```
+✅ Backend will be available at: **http://localhost:3000**
+- API endpoints at: **http://localhost:3000/api**
+- WebSocket connection at: **http://localhost:3000**
+
+**Terminal 2 - Frontend Development Server**
+```bash
+cd frontend
+npm run dev
+```
+✅ Frontend will be available at: **http://localhost:3001**
+
+#### Option 2: Quick Start Script (One-liner)
+
+Run both servers from the project root:
+```bash
+# Terminal 1
+cd backend && npm run start:dev
+
+# Terminal 2 (in new terminal tab)
+cd frontend && npm run dev
+```
+
+#### Environment Setup (First Time Only)
+
+Create `.env` files before running the servers:
+
+**Backend setup:**
+```bash
+cd backend
+cp .env.example .env
+# Edit .env and update database credentials if needed
+```
+
+**Frontend setup:**
+```bash
+cd frontend
+cp .env.example .env.local
+# Adjust NEXT_PUBLIC_API_URL if using different ports
+```
+
+#### Testing the Setup
+
+- Open **http://localhost:3001** in your browser
+- Login page should be visible
+- Try the OTP flow (use `123456` as test OTP in development)
+- Backend API can be tested at **http://localhost:3000/api**
 
 ### Building for Production
 
