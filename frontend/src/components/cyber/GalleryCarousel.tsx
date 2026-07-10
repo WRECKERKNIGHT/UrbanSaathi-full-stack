@@ -3,8 +3,33 @@
 import { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, PerspectiveCamera, MeshReflectorMaterial, useCursor } from '@react-three/drei'
-import { motion } from 'framer-motion-3d'
 import * as THREE from 'three'
+
+function ShatteredPiece({ index }: { index: number }) {
+    const meshRef = useRef<THREE.Mesh>(null)
+    const velocity = useRef([
+        (Math.random() - 0.5) * 0.15,
+        (Math.random() - 0.5) * 0.15,
+        (Math.random() - 0.5) * 0.15
+    ])
+
+    useFrame(() => {
+        if (meshRef.current) {
+            meshRef.current.position.x += velocity.current[0]
+            meshRef.current.position.y += velocity.current[1]
+            meshRef.current.position.z += velocity.current[2]
+            meshRef.current.rotation.x += 0.1
+            meshRef.current.rotation.y += 0.1
+        }
+    })
+
+    return (
+        <mesh ref={meshRef} position={[0, 0, 0]}>
+            <boxGeometry args={[0.2, 0.2, 0.2]} />
+            <meshBasicMaterial color="#ffffff" transparent opacity={0.8} />
+        </mesh>
+    )
+}
 
 function GlassCase({ position, color, label }: { position: [number, number, number], color: string, label: string }) {
     const [isShattered, setIsShattered] = useState(false)
@@ -35,21 +60,7 @@ function GlassCase({ position, color, label }: { position: [number, number, numb
             ) : (
                 <group>
                     {[...Array(20)].map((_, i) => (
-                        <motion.mesh
-                            key={i}
-                            initial={{ x: 0, y: 0, z: 0, rotation: [0, 0, 0] }}
-                            animate={{
-                                x: (Math.random() - 0.5) * 5,
-                                y: (Math.random() - 0.5) * 5,
-                                z: (Math.random() - 0.5) * 5,
-                                rotateX: Math.random() * 10,
-                                opacity: 0
-                            }}
-                            transition={{ duration: 1 }}
-                        >
-                            <boxGeometry args={[0.2, 0.2, 0.2]} />
-                            <meshBasicMaterial color="#ffffff" transparent opacity={0.8} />
-                        </motion.mesh>
+                        <ShatteredPiece key={i} index={i} />
                     ))}
                     {/* The revealed item */}
                     <Float speed={10} rotationIntensity={2}>
